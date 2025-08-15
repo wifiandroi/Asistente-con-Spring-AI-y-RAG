@@ -1,0 +1,16 @@
+services:
+  pgvector:
+    image: 'pgvector/pgvector:pg16'  # Imagen oficial pgvector para PostgreSQL 16
+    environment:
+      - POSTGRES_DB=doc_store
+      - POSTGRES_PASSWORD=Test123
+      - POSTGRES_USER=uncledave
+    labels:
+      - "org.springframework.boot.service-connection=postgres"  # Para autoconexión Spring Boot 3.5+
+    ports:
+      - '5432:5432'  # Mapea puerto local 5432 al contenedor
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Persistencia de datos
+
+volumes:
+  pgdata:
